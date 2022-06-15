@@ -42,7 +42,7 @@ public class ProductManager implements ProductService {
 
     @Override
     public DataResult<List<Product>> getAllSorted() {
-        Sort sort=Sort.by(Sort.Direction.ASC);
+        Sort sort=Sort.by(Sort.Direction.ASC,"productName");
         return new SuccessDataResult<List<Product>>(this.productDAL.findAll(sort),"Success");
 
     }
