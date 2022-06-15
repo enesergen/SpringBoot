@@ -3,10 +3,14 @@ package com.enesergen.springCourse.bussiness.concretes;
 import com.enesergen.springCourse.bussiness.abstracts.ProductService;
 import com.enesergen.springCourse.core.utilities.results.*;
 import com.enesergen.springCourse.dataAccess.abstracts.ProductDAL;
-import com.enesergen.springCourse.entities.concretes.Category;
 import com.enesergen.springCourse.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 @Service
@@ -31,6 +35,19 @@ public class ProductManager implements ProductService {
     }
 
     @Override
+    public DataResult<List<Product>> getAll(int pageNo, int pageSize) {
+        Pageable pageable= PageRequest.of(pageNo,pageSize);
+        return new SuccessDataResult<List<Product>>(this.productDAL.findAll(pageable).getContent(),"Success");
+    }
+
+    @Override
+    public DataResult<List<Product>> getAllSorted() {
+        Sort sort=Sort.by(Sort.Direction.ASC);
+        return new SuccessDataResult<List<Product>>(this.productDAL.findAll(sort),"Success");
+
+    }
+
+    @Override
     public Result add(Product product) {
         //bussines
         if(true){
@@ -47,14 +64,15 @@ public class ProductManager implements ProductService {
     }
 
     @Override
-    public DataResult<Product> getByProductNameAndCategory(String productName, Category category) {
-        return new SuccessDataResult<Product>(this.productDAL.getByProductNameAndCategory(productName,category),"Success");
+    public DataResult<Product> getByProductNameAndCategory_CategoryId(String productName, int categoryId) {
+        return new SuccessDataResult<Product>(this.productDAL.getByProductNameAndCategory_CategoryId(productName,categoryId),"Success");
     }
 
     @Override
-    public DataResult<List<Product>> getByProductNameOrCategory(String productName, Category category) {
-        return new SuccessDataResult<List<Product>>(this.productDAL.getByProductNameOrCategory(productName,category),"Success");
+    public DataResult<List<Product>> getByProductNameOrCategory_CategoryId(String productName, int categoryId) {
+        return new SuccessDataResult<List<Product>>(this.productDAL.getByProductNameOrCategory_CategoryId(productName,categoryId),"Success");
     }
+
 
     @Override
     public DataResult<List<Product>> getByCategoryIn(List<Integer> categories) {

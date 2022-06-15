@@ -10,9 +10,9 @@ import java.util.List;
 public interface ProductDAL extends JpaRepository<Product, Integer> {
     Product getByProductName(String productName);
 
-    Product getByProductNameAndCategory(String productName, Category category);
+    Product getByProductNameAndCategory_CategoryId(String productName, int categoryId);
 
-    List<Product> getByProductNameOrCategory(String productName, Category category);
+    List<Product> getByProductNameOrCategory_CategoryId(String productName, int categoryId);
 
     List<Product> getByCategoryIn(List<Integer> categories);
 
