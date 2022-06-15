@@ -1,5 +1,6 @@
 package com.enesergen.springCourse.entities.concretes;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name="categories")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","products"})
 public class Category {
     @Id
     @Column(name="category_id")
@@ -20,7 +22,7 @@ public class Category {
     @Column(name = "category_name")
     private String categoryName;
 
-    @OneToMany(mappedBy = "categoryId")
+    @OneToMany(mappedBy = "category")
     private List<Product>products;
 
 }

@@ -3,6 +3,7 @@ package com.enesergen.springCourse.bussiness.concretes;
 import com.enesergen.springCourse.bussiness.abstracts.ProductService;
 import com.enesergen.springCourse.core.utilities.results.*;
 import com.enesergen.springCourse.dataAccess.abstracts.ProductDAL;
+import com.enesergen.springCourse.entities.concretes.Category;
 import com.enesergen.springCourse.entities.concretes.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,4 +40,41 @@ public class ProductManager implements ProductService {
             return new ErrorResult("Error");
         }
     }
+
+    @Override
+    public DataResult<Product> getByProductName(String productName) {
+        return new SuccessDataResult<Product>(this.productDAL.getByProductName(productName),"Success");
+    }
+
+    @Override
+    public DataResult<Product> getByProductNameAndCategory(String productName, Category category) {
+        return new SuccessDataResult<Product>(this.productDAL.getByProductNameAndCategory(productName,category),"Success");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameOrCategory(String productName, Category category) {
+        return new SuccessDataResult<List<Product>>(this.productDAL.getByProductNameOrCategory(productName,category),"Success");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByCategoryIn(List<Integer> categories) {
+        return new SuccessDataResult<List<Product>>(this.productDAL.getByCategoryIn(categories),"Success");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameContains(String productName) {
+        return new SuccessDataResult<List<Product>>(this.productDAL.getByProductNameContains(productName),"Success");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByProductNameStartsWith(String productName) {
+        return new SuccessDataResult<List<Product>>(this.productDAL.getByProductNameStartsWith(productName),"Success");
+    }
+
+    @Override
+    public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
+        return new SuccessDataResult<List<Product>>(this.productDAL.getByNameAndCategory(productName,categoryId),"Success");
+    }
+
+
 }
