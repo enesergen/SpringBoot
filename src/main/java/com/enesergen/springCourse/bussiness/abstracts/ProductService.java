@@ -4,6 +4,7 @@ import com.enesergen.springCourse.core.utilities.results.DataResult;
 import com.enesergen.springCourse.core.utilities.results.Result;
 import com.enesergen.springCourse.entities.concretes.Category;
 import com.enesergen.springCourse.entities.concretes.Product;
+import com.enesergen.springCourse.entities.dtos.ProductWithCategoryDto;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -29,5 +30,6 @@ public interface ProductService {
     DataResult<List<Product>> getByProductNameStartsWith(String productName);
 
     DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId);
+    DataResult<List<ProductWithCategoryDto>>getProductWithCategoryDetails();
 
 }

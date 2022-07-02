@@ -4,6 +4,7 @@ import com.enesergen.springCourse.bussiness.abstracts.ProductService;
 import com.enesergen.springCourse.core.utilities.results.*;
 import com.enesergen.springCourse.dataAccess.abstracts.ProductDAL;
 import com.enesergen.springCourse.entities.concretes.Product;
+import com.enesergen.springCourse.entities.dtos.ProductWithCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.data.domain.PageRequest;
@@ -92,6 +93,12 @@ public class ProductManager implements ProductService {
     @Override
     public DataResult<List<Product>> getByNameAndCategory(String productName, int categoryId) {
         return new SuccessDataResult<List<Product>>(this.productDAL.getByNameAndCategory(productName,categoryId),"Success");
+    }
+
+    @Override
+    public DataResult<List<ProductWithCategoryDto>> getProductWithCategoryDetails() {
+        return new SuccessDataResult<List<ProductWithCategoryDto>>
+                (this.productDAL.getProductWithCategoryDetails(),"success");
     }
 
 

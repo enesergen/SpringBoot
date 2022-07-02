@@ -4,6 +4,7 @@ import com.enesergen.springCourse.bussiness.abstracts.ProductService;
 import com.enesergen.springCourse.core.utilities.results.DataResult;
 import com.enesergen.springCourse.core.utilities.results.Result;
 import com.enesergen.springCourse.entities.concretes.Product;
+import com.enesergen.springCourse.entities.dtos.ProductWithCategoryDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -65,7 +66,10 @@ public class ProductsController {
         return this.productService.getAll(pageNo-1,pageSize);
     }
 
-
+    @GetMapping("/getProductWithCategoryDetails")
+    public DataResult<List<ProductWithCategoryDto>>getProductWithCategoryDetails(){
+        return this.productService.getProductWithCategoryDetails();
+    }
 
 
 
