@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/products")
 public class ProductsController {
-    //deneme
+
     private ProductService productService;
 
     @Autowired
